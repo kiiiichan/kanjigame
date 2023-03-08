@@ -1,36 +1,48 @@
-import React, { useState } from 'react';
-import {CorrectButton} from './CorrectButton';
-import {DismisButton} from './DismisButton';
-import {PlayersCounter} from './PlayersCounter';
-import { QuestionDisplay } from './QuestionDisplay';
-import { QuestionsCounter } from './QuestionsCounter';
+import React, { useState } from "react";
+import { CorrectButton } from "./CorrectButton";
+import { DismisButton } from "./DismisButton";
+import { PlayersCounter } from "./PlayersCounter";
+import { QuestionDisplay } from "./QuestionDisplay";
+import { QuestionsCounter } from "./QuestionsCounter";
+import { Timer } from "./Timer";
 
 function Game() {
-  const questions = ["モンダイイチ","モンダイニ","モンダイサン","モンダイヨン","モンダイゴ"];
+  const questions = [
+    "モンダイイチ",
+    "モンダイニ",
+    "モンダイサン",
+    "モンダイヨン",
+    "モンダイゴ",
+  ];
+  const startCountDownSec = 10;
   const [stock, setStock] = useState(3);
   const [questionNum, setQuestionNum] = useState(0);
   const correctOnClickHandler = () => {
     setQuestionNum((prevCount) => prevCount + 1);
-  }
+  };
   const dissmissOnClickHandler = () => {
     setStock((prevCount) => prevCount - 1);
-  }
+  };
 
   const getDisplay = () => {
     if (stock <= 0) {
-      return "GameOver" 
+      return "GameOver";
     } else {
-      return questions[questionNum]
-  }; 
-}
+      return questions[questionNum];
+    }
+  };
 
   return (
     <>
-      <QuestionsCounter progress={questionNum + 1} totalQuestions={questions.length}></QuestionsCounter>
+      <QuestionsCounter
+        progress={questionNum + 1}
+        totalQuestions={questions.length}
+      ></QuestionsCounter>
       <PlayersCounter stock={stock}></PlayersCounter>
       <QuestionDisplay question={getDisplay()}></QuestionDisplay>
       <CorrectButton onClick={correctOnClickHandler}></CorrectButton>
       <DismisButton onClick={dissmissOnClickHandler}></DismisButton>
+      <Timer startSec={startCountDownSec} />
     </>
   );
 }
