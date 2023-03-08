@@ -15,11 +15,20 @@ function Game() {
   const dissmissOnClickHandler = () => {
     setStock((prevCount) => prevCount - 1);
   }
+
+  const getDisplay = () => {
+    if (stock <= 0) {
+      return "GameOver" 
+    } else {
+      return questions[questionNum]
+  }; 
+}
+
   return (
     <>
       <QuestionsCounter progress={questionNum + 1} totalQuestions={questions.length}></QuestionsCounter>
       <PlayersCounter stock={stock}></PlayersCounter>
-      <QuestionDisplay question={questions[questionNum]}></QuestionDisplay>
+      <QuestionDisplay question={getDisplay()}></QuestionDisplay>
       <CorrectButton onClick={correctOnClickHandler}></CorrectButton>
       <DismisButton onClick={dissmissOnClickHandler}></DismisButton>
     </>
