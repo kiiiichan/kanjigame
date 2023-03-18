@@ -20,10 +20,15 @@ function Game() {
   const [questionNum, setQuestionNum] = useState(0);
   const correctOnClickHandler = () => {
     setQuestionNum((prevCount) => prevCount + 1);
-    
+    playAudio("correct.mp3");
   };
   const dissmissOnClickHandler = () => {
     setStock((prevCount) => prevCount - 1);
+  };
+
+  const playAudio = (fileName: string) => {
+    const audio = new Audio(`/assets/music/${fileName}`);
+    audio.play();
   };
 
   const getDisplay = () => {
