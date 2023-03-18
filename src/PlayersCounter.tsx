@@ -18,8 +18,8 @@ export const PlayersCounter: React.VFC<PlayersCounterProps> = ({stock}) => {
   }
 
   return (
-    <>
+    <span>
       {getStockIcons()}
-    </>
+    </span>
   );
 };

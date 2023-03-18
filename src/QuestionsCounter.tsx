@@ -21,8 +21,8 @@ export const QuestionsCounter: React.VFC<QuestionsCounterProps> = ({progress,tot
   }
 
   return (
-    <>
+    <span>
       {getProgressIcons()}
-    </>
+    </span>
   );
 };

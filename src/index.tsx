@@ -9,7 +9,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Game />
+    <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100vh"}}>
+      <Game />
+    </div>
   </React.StrictMode>
 );
 

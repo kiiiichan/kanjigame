@@ -1,3 +1,4 @@
+import { Paper } from "@mui/material";
 import React, { useState } from "react";
 import { CorrectButton } from "./CorrectButton";
 import { DismisButton } from "./DismisButton";
@@ -19,6 +20,7 @@ function Game() {
   const [questionNum, setQuestionNum] = useState(0);
   const correctOnClickHandler = () => {
     setQuestionNum((prevCount) => prevCount + 1);
+    
   };
   const dissmissOnClickHandler = () => {
     setStock((prevCount) => prevCount - 1);
@@ -33,17 +35,21 @@ function Game() {
   };
 
   return (
-    <>
+    <Paper sx={{height:"80%",width:"80%",padding:2,display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+    <div style={{display:"flex",justifyContent:"space-between"}}>
       <QuestionsCounter
         progress={questionNum + 1}
         totalQuestions={questions.length}
       ></QuestionsCounter>
-      <PlayersCounter stock={stock}></PlayersCounter>
-      <QuestionDisplay question={getDisplay()}></QuestionDisplay>
+        <PlayersCounter stock={stock}></PlayersCounter>
+    </div>
+      <QuestionDisplay question={getDisplay()} startSec={startCountDownSec}></QuestionDisplay>
+      <div style={{display:"flex",justifyContent:"flex-end"}}>
       <CorrectButton onClick={correctOnClickHandler}></CorrectButton>
       <DismisButton onClick={dissmissOnClickHandler}></DismisButton>
-      <Timer startSec={startCountDownSec} />
-    </>
+      </div>
+
+    </Paper>
   );
 }
 
