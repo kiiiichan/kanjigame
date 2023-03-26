@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import React, { useState } from "react";
 import { CorrectButton } from "./CorrectButton";
 import { DismisButton } from "./DismisButton";
@@ -18,17 +18,25 @@ function Game() {
   const startCountDownSec = 10;
   const [stock, setStock] = useState(3);
   const [questionNum, setQuestionNum] = useState(0);
+  const [hasPushedStart, setHasPushedStart] = useState(false);
+
   const correctOnClickHandler = () => {
     setQuestionNum((prevCount) => prevCount + 1);
     playAudio("correct.mp3");
   };
   const dissmissOnClickHandler = () => {
     setStock((prevCount) => prevCount - 1);
+    playAudio("dissmiss.mp3");
   };
 
   const playAudio = (fileName: string) => {
     const audio = new Audio(`/assets/music/${fileName}`);
     audio.play();
+  };
+
+  const startClickHandler = () => {
+    setHasPushedStart(true);
+    playAudio("bgm.mp3");
   };
 
   const getDisplay = () => {
@@ -40,7 +48,10 @@ function Game() {
   };
 
   return (
-    <Paper sx={{height:"80%",width:"80%",padding:2,display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+    <>
+      {hasPushedStart ? (
+        <>
+            <Paper sx={{height:"80%",width:"80%",padding:2,display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
     <div style={{display:"flex",justifyContent:"space-between"}}>
       <QuestionsCounter
         progress={questionNum + 1}
@@ -55,6 +66,12 @@ function Game() {
       </div>
 
     </Paper>
+
+        </>
+      ) : (
+        <Button onClick={startClickHandler}>START</Button>
+      )}
+    </>
   );
 }
 
