@@ -31,6 +31,7 @@ function Game() {
 
   const playAudio = (fileName: string) => {
     const audio = new Audio(`/assets/music/${fileName}`);
+    audio.volume = 0.01;
     audio.play();
   };
 
