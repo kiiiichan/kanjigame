@@ -1,15 +1,18 @@
 import React from "react";
 import { Timer } from "./Timer";
 import { Box } from "@mui/material";
+import { count } from "console";
 
 type QuestionDisplayProps = {
   question: string;
-  startSec: number;
+  countSec: number;
+  setCountSec: any;
 };
 
 export const QuestionDisplay: React.VFC<QuestionDisplayProps> = ({
   question,
-  startSec,
+  countSec,
+  setCountSec,
 }) => {
   return (
     <Box
@@ -27,7 +30,7 @@ export const QuestionDisplay: React.VFC<QuestionDisplayProps> = ({
         }}
       >
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Timer startSec={startSec}></Timer>
+          <Timer countSec={countSec} setCountSec={setCountSec}></Timer>
         </div>
         <div
           style={{
