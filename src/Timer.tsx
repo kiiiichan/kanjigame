@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 type TimerProps = {
-  startSec: number;
+  countSec: number;
+  setCountSec: any;
 };
 
-export const Timer: React.VFC<TimerProps> = ({ startSec }) => {
-  const [countSec, setCountSec] = useState(startSec);
-
+export const Timer: React.VFC<TimerProps> = ({ countSec, setCountSec }) => {
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountSec((prevCountSec) => {
+      setCountSec((prevCountSec: number) => {
         const newCountSec = prevCountSec - 1;
         if (newCountSec >= 0) {
           return newCountSec;
