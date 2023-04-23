@@ -51,24 +51,32 @@ function Game() {
   return (
     <>
       {hasPushedStart ? (
-        <>
-            <Paper sx={{height:"80%",width:"80%",padding:2,display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
-    <div style={{display:"flex",justifyContent:"space-between"}}>
-      <QuestionsCounter
-        progress={questionNum + 1}
-        totalQuestions={questions.length}
-      ></QuestionsCounter>
-        <PlayersCounter stock={stock}></PlayersCounter>
-    </div>
-      <QuestionDisplay question={getDisplay()} startSec={startCountDownSec}></QuestionDisplay>
-      <div style={{display:"flex",justifyContent:"flex-end"}}>
-      <CorrectButton onClick={correctOnClickHandler}></CorrectButton>
-      <DismisButton onClick={dissmissOnClickHandler}></DismisButton>
-      </div>
-
-    </Paper>
-
-        </>
+        <Paper
+          sx={{
+            height: "80%",
+            width: "80%",
+            padding: 2,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <QuestionsCounter
+              progress={questionNum + 1}
+              totalQuestions={questions.length}
+            ></QuestionsCounter>
+            <PlayersCounter stock={stock}></PlayersCounter>
+          </div>
+          <QuestionDisplay
+            question={getDisplay()}
+            startSec={startCountDownSec}
+          ></QuestionDisplay>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <CorrectButton onClick={correctOnClickHandler}></CorrectButton>
+            <DismisButton onClick={dissmissOnClickHandler}></DismisButton>
+          </div>
+        </Paper>
       ) : (
         <Button onClick={startClickHandler}>START</Button>
       )}
